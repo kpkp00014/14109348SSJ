@@ -1,0 +1,63 @@
+create table users (
+	id varchar(20) NOT NULL PRIMARY KEY,
+	pw varchar(20) NOT NULL,
+	name varchar(20) NOT NULL
+);
+
+create table book (
+	bid INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	bname VARCHAR(50) NOT NULL
+);
+
+create table quiz (
+	bid int NOT NULL,
+	qno int NOT NULL,
+	qname varchar(20) NOT NULL,
+	constraint q_pk PRIMARY KEY (bid, qno),
+	constraint id_fk FOREIGN KEY(bid) REFERENCES book(bid)
+);
+	
+create table answer (
+	bid int NOT NULL,
+	qno int NOT NULL,
+	id varchar(20) NOT NULL,
+	answer varchar(20) NOT NULL,
+	constraint a_pk PRIMARY KEY (bid, qno, id),
+	constraint quiz_fk FOREIGN KEY(bid, qno) REFERENCES quiz(bid, qno),
+	constraint a_id_fk FOREIGN KEY(id) REFERENCES users(id)
+);
+
+insert into book (bid, bname) VALUES
+('1', 'esential_calculus'),
+('2', '이산수학');
+
+insert into quiz (bid, qno, qname) VALUES
+('1', '1', 'Q.1-1'),
+('1', '2', 'Q.1-2'),
+('1', '3', 'Q.2-1'),
+('1', '4', 'Q.2-2'),
+('1', '5', 'Q.2-3'),
+('2', '1', 'Q.1'),
+('2', '2', 'Q.2');
+
+delimiter $$
+	create procedure addQuiz(IN_BID INT, IN _QNAME VARCHAR(20))
+	BEGIN
+	DECLARE QNO INT;
+		SELECT MAX(qno) in QNO 
+		FROM quiz
+		WHERE bid = _BID
+		INSERT INTO quiz (bid, qno, qname) VALUES
+		(_BID, QNO, _QNAME)
+	END$$;
+
+delimiter
+;
+
+DELIMITER $$
+CREATE PROCEDURE addQuiz(_BID INT, _QNAME VARCHAR(20))
+BEGIN
+DECLARE _QNO INT;
+select max(qno) INTO _QNO from quiz where bid=_BID;
+INSERT INTO quiz (bid, qno, qname) VALUES (_BID, _QNO + 1, _QNAME);
+END$$

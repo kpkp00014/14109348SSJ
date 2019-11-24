@@ -1,0 +1,104 @@
+div.bookTable
+{
+
+}
+
+.quizTable ul {
+  padding : 0px;
+  margin : 0px;
+}
+
+.quizTable li {
+  padding :5px;
+  margin : 12px;
+  text-align : center;
+  border : 1px solid #cddcdc;
+  list-style: none;
+  font-size: 2em;
+}
+
+a{
+  text-decoration : none;
+  color : black;
+}
+.quizTable a {
+  display : block;
+}
+.reverse {
+  background: #39b813;
+  color: white !important;
+}
+
+.bookMain
+{
+  display:inline-block;
+  height: 300px;
+  width: 200px;
+  border : 1px dotted #2b1d32;
+  background-color: #e3f4b8;
+  padding : 3px;
+  margin : 5px;
+  overflow : hidden;
+}
+
+.logo img
+{
+  height : 80px;
+}
+
+.bookTitle
+{
+  text-align: center;
+  vertical-align: middle;
+  color : #8d9955;
+  height : 30px;
+  border-bottom: solid #000000;
+  margin-bottom: 3px;
+}
+
+.bookPic
+{
+  padding : 3px;
+  vertical-align: middle;
+  overflow: hidden;
+}
+.bookPic img
+{
+  display : block;
+  margin :auto;
+  width: 100%;
+  height : auto;
+}
+
+footer
+{
+    position: absolute;
+    right: 10px;
+    width: 30%;
+    min-width: 300px;
+    border-radius: 15px;
+    background-color: floralwhite;
+    margin: 10px;
+    padding: 10px;
+    text-align: right;
+    text-shadow: 2px 2px gainsboro;
+    font-family: sans-serif;
+    font-size: 0.7em;
+}
+footer table
+{
+    display: inline-block;
+}
+
+.addQuiz
+{
+  width: 100px;
+  height: 40px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  line-height: 40px;
+  text-align: center;
+  background-color: #45670f;
+  color : white;
+}
