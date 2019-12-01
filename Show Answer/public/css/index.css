@@ -102,3 +102,31 @@ footer table
   background-color: #45670f;
   color : white;
 }
+
+.inputAnswer
+{
+  text-align: center;;
+}
+
+
+table.quizResult
+{
+  border-collapse: separate;
+  border-spacing: 2px;
+  text-align: center;
+  line-height: 1.5;
+  margin: auto;
+
+}
+table.quizResult th {
+  width: 120px;
+  padding : 10px;
+  font-weight: bold;
+  color: #ffffff;
+  background: #6c6242;
+}
+table.quizResult td {
+  padding : 10px;
+  border-bottom: 1px solid #ccc;
+  background: #eeeeee;
+}

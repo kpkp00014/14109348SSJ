@@ -1,42 +1,51 @@
 $(document).ready(function () {
   function quizList() {
-    $('.quizTable').empty();
+    $('.quizResult').empty();
     var location = window.location.pathname;
     var result = location.replace('book', 'quiz');
-    $('.quizTable').append('<ul>');
+    $('.quizResult').append('<tr><th>Rank</th><th>Answer</th><th>Number</th></tr>');
     $.getJSON(result, function (data) {
       $(data).each(function (index, item) {
         var output = '';
-        output += '<li>';
-        output += '<a href = "' + location + '/' + item.qno +'">'
-        output += item.qname;
-        output += '</a>'
-        output += '</li>';
-        $('.quizTable').append(output);
+        output += '<tr>';
+        output += '<td>'+ (index+1)+'</td>';
+        output += '<td>'+ item.answer +'</td>';
+        output += '<td>'+ item.c +'</td>';
+        output += '</tr>';
+        $('.quizResult').append(output);
       });
     });
-    $('.quizTable').append('</ul>');
+    $('.quizResult').append('</table>');
+
+    var title = result.replace('quiz', 'title');
+    $.getJSON(title, function(data){
+      $(data).each(function (index, item) {
+        var output = '';
+        output += '<H1>' + item.qname + '</H1>'
+        $('.inputAnswer').prepend(output);
+      });
+    });
+
   }
 
+  $('#my-form').submit(function (event){
+
+    $('.quizResult').append(result);
+    var location = window.location.pathname;
+    var result = location.replace('book', 'quiz');
+    $.ajax({
+      url : result,
+      type: 'post',
+      data :{
+        answer : $('#answer').val()
+      }
+    });
+    $('.inputAnswer').empty();
+    quizList();
+    event.preventDefault();
+  });
 
   quizList();
 
-  // li 에 반전 속성 추가
-
-  $(document).on("mouseover", "li", function(){
-    $(this).addClass('reverse');
-  });
-  $(document).on("mouseout", "li", function(){
-    $(this).removeClass('reverse');
-  });
-
-  var msg = '<form name="QuizAdder" method = "post" target = "_blank">';
-  msg += '<input type="text" name="qname"/><input type="submit" value="submit" onclick = "window.location.reload()"/>';
-  msg += '</p></form>';
-
-  $('.addQuiz').click(function(){
-    $('form').remove();
-    $(this).after(msg);
-  });
 
 });

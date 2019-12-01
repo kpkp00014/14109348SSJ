@@ -64,8 +64,38 @@ app.post('/book/:bid/', function(req, res){
 
 app.get('/book/:bid/:qno', function(req, res){
   res.sendFile('quiz.html', {root : path.join(__dirname, '/public')});
+
 });
 
+app.get('/quiz/:bid/:qno', function(req,res){
+  var bid = Number(req.params.bid);
+  var qno = Number(req.params.qno);
+  client.query('SELECT answer, count(answer) c from answer where bid = ? and qno = ? group by answer order by c desc',[
+    bid, qno
+  ], function (error, data){
+    res.send(data);
+  });
+})
+
+app.post('/quiz/:bid/:qno', function(req,res){
+    var bid = Number(req.params.bid);
+    var qno = Number(req.params.qno);
+    var answer = req.body.answer;
+    if (answer != ''){
+      var result = "call addAnswer("+ bid + "," + qno + ","+ answer + ")";
+      client.query(result, function(error, data){});
+    }
+})
+
+app.get('/title/:bid/:qno', function(req, res){
+  var bid = Number(req.params.bid);
+  var qno = Number(req.params.qno);
+  client.query('SELECT qname from quiz where bid = ? and qno = ?',[
+    bid, qno
+  ], function (error, data){
+    res.send(data);
+  });
+});
 
 app.listen(52273, function() {
   console.log('Server Running at http://127.0.0.1:52273');

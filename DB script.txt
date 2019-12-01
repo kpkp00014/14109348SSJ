@@ -1,10 +1,4 @@
-create table users (
-	id varchar(20) NOT NULL PRIMARY KEY,
-	pw varchar(20) NOT NULL,
-	name varchar(20) NOT NULL
-);
-
-create table book (
+﻿create table book (
 	bid INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	bname VARCHAR(50) NOT NULL
 );
@@ -20,11 +14,10 @@ create table quiz (
 create table answer (
 	bid int NOT NULL,
 	qno int NOT NULL,
-	id varchar(20) NOT NULL,
+	ano int NOT NULL,
 	answer varchar(20) NOT NULL,
-	constraint a_pk PRIMARY KEY (bid, qno, id),
-	constraint quiz_fk FOREIGN KEY(bid, qno) REFERENCES quiz(bid, qno),
-	constraint a_id_fk FOREIGN KEY(id) REFERENCES users(id)
+	constraint a_pk PRIMARY KEY (bid, qno, ano),
+	constraint quiz_fk FOREIGN KEY(bid, qno) REFERENCES quiz(bid, qno)
 );
 
 insert into book (bid, bname) VALUES
@@ -54,6 +47,8 @@ delimiter $$
 delimiter
 ;
 
+
+
 DELIMITER $$
 CREATE PROCEDURE addQuiz(_BID INT, _QNAME VARCHAR(20))
 BEGIN
@@ -61,3 +56,21 @@ DECLARE _QNO INT;
 select max(qno) INTO _QNO from quiz where bid=_BID;
 INSERT INTO quiz (bid, qno, qname) VALUES (_BID, _QNO + 1, _QNAME);
 END$$
+
+
+DELIMITER $$
+CREATE PROCEDURE addAnswer(_BID INT, _QNO INT, _ANSWER VARCHAR(20))
+BEGIN
+DECLARE _ANO INT;
+select max(ano) INTO _ANO from answer where bid=_BID and qno=_QNO;
+INSERT INTO answer (bid, qno, ano, answer) VALUES (_BID, _QNO, _ANO+1, _ANSWER);
+END$$
+
+CALL addAnswer(1,1,16);
+CALL addAnswer(1,1,16);
+CALL addAnswer(1,1,18);
+CALL addAnswer(1,1,16);
+CALL addAnswer(1,1,15);
+CALL addAnswer(1,1,15);
+CALL addAnswer(1,1,16);
+CALL addAnswer(1,1,16);
