@@ -16,6 +16,15 @@ $(document).ready(function () {
       });
     });
     $('.quizTable').append('</ul>');
+
+    var title = result.replace('quiz', 'title');
+    $.getJSON(title, function(data){
+      $(data).each(function (index, item) {
+        var output = '';
+        output += '<H1>' + item.bname + '</H1>';
+        $('.title').prepend(output);
+      });
+    });
   }
 
 
@@ -29,7 +38,7 @@ $(document).ready(function () {
   $(document).on("mouseout", "li", function(){
     $(this).removeClass('reverse');
   });
-
+/*
   var msg = '<form name="QuizAdder" method = "post" target = "_blank">';
   msg += '<input type="text" name="qname"/><input type="submit" value="submit" onclick = "window.location.reload()"/>';
   msg += '</p></form>';
@@ -37,6 +46,6 @@ $(document).ready(function () {
   $('.addQuiz').click(function(){
     $('form').remove();
     $(this).after(msg);
-  });
+  });*/
 
 });

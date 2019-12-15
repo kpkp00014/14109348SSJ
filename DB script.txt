@@ -3,6 +3,8 @@
 	bname VARCHAR(50) NOT NULL
 );
 
+
+
 create table quiz (
 	bid int NOT NULL,
 	qno int NOT NULL,
@@ -63,6 +65,9 @@ CREATE PROCEDURE addAnswer(_BID INT, _QNO INT, _ANSWER VARCHAR(20))
 BEGIN
 DECLARE _ANO INT;
 select max(ano) INTO _ANO from answer where bid=_BID and qno=_QNO;
+IF (_ANO IS NULL) THEN
+	SET _ANO = 1;
+END IF;
 INSERT INTO answer (bid, qno, ano, answer) VALUES (_BID, _QNO, _ANO+1, _ANSWER);
 END$$
 
@@ -74,3 +79,66 @@ CALL addAnswer(1,1,15);
 CALL addAnswer(1,1,15);
 CALL addAnswer(1,1,16);
 CALL addAnswer(1,1,16);
+CALL addAnswer(2,1,8);
+CALL addAnswer(1,1,3);
+CALL addAnswer(1,1,3);
+CALL addAnswer(1,1,3);
+CALL addAnswer(1,1,4);
+CALL addAnswer(1,1,4);
+CALL addAnswer(1,1,3);
+CALL addAnswer(1,1,1);
+CALL addAnswer(1,2,2);
+CALL addAnswer(1,2,2);
+CALL addAnswer(1,2,2);
+CALL addAnswer(1,2,2);
+CALL addAnswer(1,2,2);
+CALL addAnswer(1,2,3);
+CALL addAnswer(1,2,3);
+CALL addAnswer(1,2,1);
+CALL addAnswer(1,2,1);
+CALL addAnswer(1,2,2);
+CALL addAnswer(1,3,9);
+CALL addAnswer(1,3,9);
+CALL addAnswer(1,3,9);
+CALL addAnswer(1,3,9);
+CALL addAnswer(1,3,9);
+CALL addAnswer(1,3,8);
+CALL addAnswer(1,3,8);
+CALL addAnswer(1,4,150);
+CALL addAnswer(1,4,150);
+CALL addAnswer(1,4,149);
+CALL addAnswer(1,4,190);
+CALL addAnswer(1,4,150);
+CALL addAnswer(1,5,77);
+CALL addAnswer(1,5,77);
+CALL addAnswer(1,5,77);
+CALL addAnswer(1,5,77);
+CALL addAnswer(1,5,77);
+CALL addAnswer(1,5,77);
+CALL addAnswer(1,5,77);
+CALL addAnswer(1,5,77);
+CALL addAnswer(1,5,77);
+CALL addAnswer(1,5,77);
+CALL addAnswer(1,5,78);
+CALL addAnswer(1,5,87);
+CALL addAnswer(1,5,88);
+CALL addAnswer(1,5,87);
+CALL addAnswer(1,5,88);
+CALL addAnswer(1,5,77);
+CALL addAnswer(2,1,151);
+CALL addAnswer(2,1,151);
+CALL addAnswer(2,1,151);
+CALL addAnswer(2,1,152);
+CALL addAnswer(2,1,152);
+CALL addAnswer(2,1,153);
+CALL addAnswer(2,2,791);
+CALL addAnswer(2,2,179);
+CALL addAnswer(2,2,971);
+CALL addAnswer(2,2,791);
+CALL addAnswer(2,2,494);
+CALL addAnswer(2,2,791);
+CALL addAnswer(2,2,143);
+CALL addAnswer(2,2,151);
+CALL addAnswer(2,2,151);
+CALL addAnswer(2,2,781);
+CALL addAnswer(2,2,451);

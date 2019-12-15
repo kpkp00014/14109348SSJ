@@ -17,6 +17,7 @@ var client = mysql.createConnection(
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({detended:false}));
 
+
 app.get('/booklist', function(request, response){
   client.query('SELECT * FROM book', function (error, data) {
         response.send(data);
@@ -70,7 +71,7 @@ app.get('/book/:bid/:qno', function(req, res){
 app.get('/quiz/:bid/:qno', function(req,res){
   var bid = Number(req.params.bid);
   var qno = Number(req.params.qno);
-  client.query('SELECT answer, count(answer) c from answer where bid = ? and qno = ? group by answer order by c desc',[
+  client.query('SELECT answer x, count(answer) value from answer where bid = ? and qno = ? group by answer order by value desc',[
     bid, qno
   ], function (error, data){
     res.send(data);
@@ -87,10 +88,19 @@ app.post('/quiz/:bid/:qno', function(req,res){
     }
 })
 
+app.get('/title/:bid', function(req, res){
+  var bid = Number(req.params.bid);
+  client.query('SELECT bname from book where bid = ?',[
+    bid
+  ], function (error, data){
+    res.send(data);
+  });
+});
+
 app.get('/title/:bid/:qno', function(req, res){
   var bid = Number(req.params.bid);
   var qno = Number(req.params.qno);
-  client.query('SELECT qname from quiz where bid = ? and qno = ?',[
+  client.query('SELECT bname, qname from book, quiz where quiz.bid = ? and quiz.qno = ? and book.bid=quiz.bid',[
     bid, qno
   ], function (error, data){
     res.send(data);

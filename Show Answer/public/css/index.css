@@ -1,6 +1,6 @@
-div.bookTable
-{
-
+a{
+  text-decoration : none;
+  color : black;
 }
 
 .quizTable ul {
@@ -12,33 +12,32 @@ div.bookTable
   padding :5px;
   margin : 12px;
   text-align : center;
-  border : 1px solid #cddcdc;
+  border : 3px solid #cddcdc;
   list-style: none;
   font-size: 2em;
+  border-radius: 25px;
 }
 
-a{
-  text-decoration : none;
-  color : black;
-}
+
 .quizTable a {
   display : block;
 }
+
 .reverse {
-  background: #39b813;
-  color: white !important;
+  background: #0a0038;
+}
+.reverse a {
+  color : #EEEEEE;
 }
 
 .bookMain
 {
   display:inline-block;
-  height: 300px;
-  width: 200px;
-  border : 1px dotted #2b1d32;
-  background-color: #e3f4b8;
-  padding : 3px;
+  height: 250px;
+  width: 210px;
   margin : 5px;
   overflow : hidden;
+  border-radius: 25px;
 }
 
 .logo img
@@ -50,24 +49,32 @@ a{
 {
   text-align: center;
   vertical-align: middle;
-  color : #8d9955;
   height : 30px;
-  border-bottom: solid #000000;
   margin-bottom: 3px;
+  background-color: #596a7a;
+}
+
+.bookTitle a
+{
+  color : white;
 }
 
 .bookPic
 {
   padding : 3px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   vertical-align: middle;
   overflow: hidden;
+  background-color: #b4c3bd;
 }
 .bookPic img
 {
   display : block;
-  margin :auto;
-  width: 100%;
-  height : auto;
+  margin :5px;
+  width: 190px;
+  height : 190px;
+  object-fit: scale-down;
 }
 
 footer
@@ -105,9 +112,17 @@ footer table
 
 .inputAnswer
 {
-  text-align: center;;
+  text-align: center;
+
+  margin: 5px;
+  padding: 20px;
+
 }
 
+.title
+{
+  text-align: center;
+}
 
 table.quizResult
 {
@@ -116,7 +131,6 @@ table.quizResult
   text-align: center;
   line-height: 1.5;
   margin: auto;
-
 }
 table.quizResult th {
   width: 120px;
@@ -129,4 +143,16 @@ table.quizResult td {
   padding : 10px;
   border-bottom: 1px solid #ccc;
   background: #eeeeee;
+}
+
+.canv {
+  border: 3px solid #123456;
+  border-radius: 30px;
+  margin: 10px;
+  padding: 20px;
+  display: inline-block;
+}
+.outer {
+  display: block;
+  text-align: center;
 }

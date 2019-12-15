@@ -7,6 +7,9 @@
     </style>
     <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
     <script src="../../quiz/quiz.js"></script>
+    <script src="https://cdn.anychart.com/js/8.0.1/anychart-core.min.js"></script>
+    <script src="https://cdn.anychart.com/js/8.0.1/anychart-pie.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     </head>
   <body>
     <div class="logo">
@@ -16,17 +19,26 @@
     </div>
     <hr />
     <div style="position:relative;" name="본문">
-      <div class="inputAnswer">
-        <h3>당신은 이 문제의 답이 얼마로 나왔습니까?</h3>
-        <form id = "my-form" method="post">
-          <input id="answer" name ="answer" type="number">
-          <input type = "submit" value="제출"/>
-        </form>
+      <div class="outer">
+        <div class="inputAnswer">
+          <h3>당신은 이 문제의 답이 얼마로 나왔습니까?</h3>
+          <form id = "my-form" method="post">
+            <input id="answer" name ="answer" type="number">
+            <input type = "submit" value="제출"/>
+          </form>
+        </div>
       </div>
-      <hr>
+      <div class="outer">
+        <div class="canv">
+          <canvas id = "myChart"></canvas>
+        </div>
+      </div>
+      <details>
+        <summary>더 자세히 알아보기</summary>
       <table class="quizResult">
 
       </table>
+    </details>
     </div>
     <hr />
     <footer>
